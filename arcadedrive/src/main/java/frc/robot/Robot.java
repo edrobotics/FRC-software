@@ -40,23 +40,26 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousPeriodic() {
-    double lY = controller.getLeftY();
-    double rX = controller.getRightX();
-    double baseSpeed = lY * lY;
-    if(lY < 0){
-      baseSpeed = baseSpeed * -1;
-    }
-    
-
-    m_left.set(ControlMode.PercentOutput, lY);
-    m_right.set(ControlMode.PercentOutput, rY);
+   
   }
 
   @Override
   public void teleopInit() {}
 
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+    double lY = controller.getLeftY();
+    double rX = controller.getRightX();
+    double baseSpeed = lY * lY;
+    if(lY < 0){
+      baseSpeed = baseSpeed * -1;
+    }
+    double leftSpeed = baseSpeed -baseSpeed*rX*2;
+    double rightSpeed = baseSpeed +baseSpeed*rX*2;
+
+    m_left.set(ControlMode.PercentOutput, leftSpeed);
+    m_right.set(ControlMode.PercentOutput, rightSpeed);
+  }
 
   @Override
   public void disabledInit() {}
