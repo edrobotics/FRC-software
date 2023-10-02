@@ -51,11 +51,19 @@ public class Robot extends TimedRobot {
     double lY = controller.getLeftY();
     double rX = controller.getRightX();
     double baseSpeed = lY * lY;
+    double leftSpeed;
+    double rightSpeed;
     if(lY < 0){
       baseSpeed = baseSpeed * -1;
     }
-    double leftSpeed = baseSpeed -baseSpeed*rX*2;
-    double rightSpeed = baseSpeed +baseSpeed*rX*2;
+    if(rX>0){
+      leftSpeed = baseSpeed;
+      rightSpeed = baseSpeed *(1-2*rX);
+    }else{
+      rightSpeed = baseSpeed;
+      leftSpeed = baseSpeed*(1+2*rX);
+
+    }
 
     m_left.set(ControlMode.PercentOutput, leftSpeed);
     m_right.set(ControlMode.PercentOutput, rightSpeed);
