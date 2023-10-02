@@ -50,6 +50,7 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     double lY = controller.getLeftY();
     double rX = controller.getRightX();
+    rX = rX*rX;
     double baseSpeed = lY * lY;
     double leftSpeed;
     double rightSpeed;
