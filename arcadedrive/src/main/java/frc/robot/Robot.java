@@ -51,7 +51,7 @@ public class Robot extends TimedRobot {
     double lY = controller.getLeftY();
     double rX = controller.getRightX();
     rX = rX*rX;
-    double baseSpeed = lY * lY;
+    double baseSpeed = lY * lY/2;
     double leftSpeed;
     double rightSpeed;
     if(lY < 0){
