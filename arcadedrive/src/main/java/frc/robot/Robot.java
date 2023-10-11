@@ -22,14 +22,17 @@ public class Robot extends TimedRobot {
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
    */
-  VictorSPX m_left = new VictorSPX(2);
   VictorSPX m_right = new VictorSPX(1);
+  VictorSPX m_left = new VictorSPX(2);
+  VictorSPX m_right2 = new VictorSPX(3);
+  VictorSPX m_left2 = new VictorSPX(4);
   XboxController controller = new XboxController(0);
 
   @Override
   public void robotInit() {
 
     m_left.setInverted(true);
+    m_left2.setInverted(true);
   }
 
   @Override
@@ -50,7 +53,6 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     double lY = controller.getLeftY();
     double rX = controller.getRightX();
-    rX = rX*rX;
     double baseSpeed = lY * lY/2;
     double leftSpeed;
     double rightSpeed;
@@ -67,7 +69,9 @@ public class Robot extends TimedRobot {
     }
 
     m_left.set(ControlMode.PercentOutput, leftSpeed);
+    m_left2.set(ControlMode.PercentOutput, leftSpeed);
     m_right.set(ControlMode.PercentOutput, rightSpeed);
+    m_right2.set(ControlMode.PercentOutput, rightSpeed);
   }
 
   @Override
