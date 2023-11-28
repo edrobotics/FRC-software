@@ -40,7 +40,7 @@ class Robot : public frc::TimedRobot {
   ctre::phoenix::motorcontrol::can::TalonSRX flywheel{1};
 // The serial port is defined here kOnboard is the default value although you
 // might be able to use usb acording to the reference: https://github.wpilib.org/allwpilib/docs/release/cpp/classfrc_1_1_serial_port.html
-  frc::SerialPort arduino{9600, frc::SerialPort::kOnboard};
+  frc::SerialPort arduino{9600, frc::SerialPort::kUSB1};
   char senddata{1};
   char* sendpointer{&senddata};
 
