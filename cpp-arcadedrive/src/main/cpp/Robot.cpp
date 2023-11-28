@@ -6,6 +6,8 @@
 
 #include <math.h>
 #include <iostream>
+#include <frc/I2C.h>
+#include <frc/SerialPort.h>
 #include <fmt/core.h>
 #include <frc/Timer.h>
 #include <frc/XboxController.h>
@@ -107,6 +109,15 @@ void Robot::TeleopPeriodic() {
 // Flywheel
   double flywheel_speed = controller.GetRightTriggerAxis();
   flywheel.Set(ctre::phoenix::motorcontrol::TalonSRXControlMode::PercentOutput, flywheel_speed);
+
+// Stepper
+  if (controller.GetRightBumper()) {
+  senddata = 1;
+  arduino.Write(sendpointer, 1);
+} else {
+  senddata = 0;
+  arduino.Write(sendpointer, 1);
+}
 }
 
 void Robot::DisabledInit() {}

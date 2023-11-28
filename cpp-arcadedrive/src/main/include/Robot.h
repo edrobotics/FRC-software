@@ -8,6 +8,8 @@
 
 #include <frc/TimedRobot.h>
 #include <frc/Timer.h>
+#include <frc/I2C.h>
+#include <frc/SerialPort.h>
 #include <frc/XboxController.h>
 #include <frc/drive/DifferentialDrive.h>
 #include <frc/smartdashboard/SendableChooser.h>
@@ -36,6 +38,11 @@ class Robot : public frc::TimedRobot {
   ctre::phoenix::motorcontrol::can::VictorSPX m_left2{4};
   frc::XboxController controller{0};
   ctre::phoenix::motorcontrol::can::TalonSRX flywheel{1};
+// The serial port is defined here kOnboard is the default value although you
+// might be able to use usb acording to the reference: https://github.wpilib.org/allwpilib/docs/release/cpp/classfrc_1_1_serial_port.html
+  frc::SerialPort arduino{9600, frc::SerialPort::kOnboard};
+  char senddata{1};
+  char* sendpointer{&senddata};
 
  private:
   frc::SendableChooser<std::string> m_chooser;
